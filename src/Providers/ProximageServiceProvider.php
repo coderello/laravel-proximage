@@ -14,7 +14,9 @@ class ProximageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__.'/../../config/proximage.php' => config_path('proximage.php'),
+        ], 'proximage-config');
     }
 
     /**
@@ -25,5 +27,10 @@ class ProximageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('proximage', ImageProxy::class);
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/proximage.php',
+            'proximage'
+        );
     }
 }
