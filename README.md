@@ -7,7 +7,7 @@
 You can install this package via composer using this command:
 
 ```bash
-composer require coderello/proximage
+composer require coderello/laravel-proximage
 ```
 
 The package will automatically register itself.
