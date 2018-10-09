@@ -25,7 +25,7 @@ class Parameter
     const QUALITY = 'q';
     const OUTPUT = 'output';
     const INTERLACE = 'il';
-    const BASE64 = 'encoding';
+    const ENCODING = 'encoding';
     const DEFAULT_IMAGE = 'errorredirect';
     const PAGE = 'page';
     const FILENAME = 'filename';
