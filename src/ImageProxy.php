@@ -5,6 +5,33 @@ namespace Coderello\Proximage;
 use Coderello\Proximage\Enums\Parameter;
 use Illuminate\Support\Collection;
 
+/**
+ * @method self width($value)
+ * @method self height($value)
+ * @method self devicePixelRatio($value)
+ * @method self transformation($value)
+ * @method self crop($value)
+ * @method self cropAlignment($value)
+ * @method self mask($value)
+ * @method self maskTrim($value)
+ * @method self maskBackground($value)
+ * @method self orientation($value)
+ * @method self brightness($value)
+ * @method self contrast($value)
+ * @method self gamma($value)
+ * @method self sharpen($value)
+ * @method self trim($value)
+ * @method self blur($value)
+ * @method self filter($value)
+ * @method self background($value)
+ * @method self quality($value)
+ * @method self output($value)
+ * @method self interlace($value)
+ * @method self encoding($value)
+ * @method self defaultImage($value)
+ * @method self page($value)
+ * @method self filename($value)
+ */
 class ImageProxy
 {
     const DOMAIN = 'images.weserv.nl';
