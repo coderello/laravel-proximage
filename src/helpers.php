@@ -1,8 +1,13 @@
 <?php
 
+use Coderello\Proximage\ImageProxy;
+
 if (! function_exists('proximage')) {
-    function proximage()
+    function proximage(?string $url = null): ImageProxy
     {
-        return app('proximage');
+        /** @var ImageProxy $imageProxy */
+        $imageProxy = app('proximage');
+
+        return $imageProxy->url($url);
     }
 }
