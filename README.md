@@ -1,6 +1,6 @@
 ![Proximage](logo.png)
 
-**Proximage** is a handy package for proxying images through the images.weserv.nl (free image cache & resize service)  with which you can greatly increase the performance of the site.
+**Proximage** is a handy package for proxying images through the `images.weserv.nl` (free image cache & resize service) with which you can greatly increase the performance of the site.
 
 ## Installation
 
@@ -12,13 +12,14 @@ composer require coderello/proximage
 
 The package will automatically register itself.
 
-You can publish the config file with:
+## Some important notes
 
-```bash
-php artisan vendor:publish --tag="proximage-config"
-```
+- images are not processed on your server (package generates a link to your image processed by a third-party service);
+- the only way to specify an input image is to pass its public link;
+- you can cast an object (obtained as a result of each example below) to string these ways: `(string) proximage($imageUrl)` or `proximage($imageUrl)->__toString()`.
 
-## Few examples of typical use
+
+## Examples of use
 
 Only caching:
 
