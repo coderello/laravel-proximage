@@ -1,6 +1,6 @@
-![Proximage](logo.png)
+<p align="center"><img alt="Proximage" src="logo.png" width="450"></p>
 
-**Proximage** is a handy package for proxying images through the `images.weserv.nl` (free image cache & resize service) with which you can greatly increase the performance of the site.
+<p align="center"><b>Proximage</b> is a handy package for proxying images through the <code>images.weserv.nl</code> (free image cache & resize service) with which you can greatly increase the performance of the site.</p>
 
 ## Installation
 
