@@ -79,6 +79,10 @@ class ImageProxy
     {
         $url = $this->prepareUrl($this->url);
 
+        if (is_null($url)) {
+            return null;
+        }
+
         $preparedParameters = Collection::make($this->parameters)
             ->reject(function ($value) {
                 return is_null($value);
