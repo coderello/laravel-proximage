@@ -2,6 +2,7 @@
 
 namespace Coderello\Proximage;
 
+use Closure;
 use Coderello\Proximage\Enums\Parameter;
 use Illuminate\Support\Collection;
 
@@ -42,6 +43,9 @@ class ImageProxy
     /** @var array */
     protected $parameters = [];
 
+    /** @var Closure|null */
+    protected $shouldProxy;
+
     /**
      * @param $name
      * @param $arguments
@@ -77,6 +81,10 @@ class ImageProxy
      */
     public function __toString()
     {
+        if (! is_null($this->shouldProxy) && ! ($this->shouldProxy)($this->url)) {
+            return $this->url;
+        }
+
         $url = $this->prepareUrl($this->url);
 
         if (is_null($url)) {
@@ -91,6 +99,19 @@ class ImageProxy
             ->toArray();
 
         return 'https://' . self::DOMAIN . '?' . http_build_query($preparedParameters);
+    }
+
+    /**
+     * Set callback which detects if given image should be proxied.
+     *
+     * @param Closure $shouldProxy
+     * @return ImageProxy
+     */
+    public function shouldProxy(Closure $shouldProxy): self
+    {
+        $this->shouldProxy = $shouldProxy;
+
+        return $this;
     }
 
     /**
