@@ -43,11 +43,25 @@ proximage($imageUrl)
   ->transformation(Parameter\Transformation::SQUARE);
 ```
 
-## All methods
+## Main methods
 
-### url($value)
+### url(?string $value)
 
 Sets the link to your input image.
+
+### parameter(string $name, $value)
+
+Sets the value of the parameter by its name.
+
+You can find all existing parameter names in `Parameter` enum situated in `Coderello\Proximage\Enums` namespace.
+
+> More handy way is to use methods for image manipulations which can be found in the section below.
+
+### shouldProxy(Closure $shouldProxy)
+
+Sets callback which detects if given image should be proxied. Callback receives `$url` as the first argument and should return `true` or `false`.
+
+## Methods for image manipulations 
 
 ### width($value)
 
