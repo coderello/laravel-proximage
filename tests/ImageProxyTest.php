@@ -76,4 +76,25 @@ class ImageProxyTest extends AbstractTestCase
             ->invalidMethod(20)
             ->__toString();
     }
+
+    public function test_shouldProxy_method()
+    {
+        $this->assertNotSame(
+            'http://example.com/image.jpg',
+            (string) (new ImageProxy)
+                ->url('http://example.com/image.jpg')
+                ->shouldProxy(function ($url) {
+                    return ends_with($url, '.jpg');
+                })
+        );
+
+        $this->assertSame(
+            'http://example.com/image.jpg',
+            (string) (new ImageProxy)
+                ->url('http://example.com/image.jpg')
+                ->shouldProxy(function ($url) {
+                    return ends_with($url, '.png');
+                })
+        );
+    }
 }
