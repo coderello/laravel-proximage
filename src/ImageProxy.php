@@ -55,23 +55,23 @@ class ImageProxy
     {
         $constantName = Parameter::class . '::' . strtoupper(snake_case($name));
 
-        if (defined($constantName)) {
-            $this->parameter(
-                constant($constantName),
-                $arguments[0] ?? null
+        if (! defined($constantName)) {
+            trigger_error(
+                sprintf(
+                    'Call to undefined method %s::%s()',
+                    get_class($this),
+                    $name
+                ),
+                E_USER_ERROR
             );
-
-            return $this;
         }
 
-        trigger_error(
-            sprintf(
-                'Call to undefined method %s::%s()',
-                get_class($this),
-                $name
-            ),
-            E_USER_ERROR
+        $this->parameter(
+            constant($constantName),
+            $arguments[0] ?? null
         );
+
+        return $this;
     }
 
     /**
@@ -151,25 +151,25 @@ class ImageProxy
     {
         $preparedUrl = '';
 
-        if (is_null($host = parse_url($url, PHP_URL_HOST))) {
+        if (! $host = parse_url($url, PHP_URL_HOST)) {
             return null;
         }
 
         $preparedUrl .= $host;
 
-        if (! is_null($port = parse_url($url, PHP_URL_PORT))) {
+        if ($port = parse_url($url, PHP_URL_PORT)) {
             $preparedUrl .= ':'.$port;
         }
 
-        if (! is_null($path = parse_url($url, PHP_URL_PATH))) {
+        if ($path = parse_url($url, PHP_URL_PATH)) {
             $preparedUrl .= $path;
         }
 
-        if (! is_null($query = parse_url($url, PHP_URL_QUERY))) {
+        if ($query = parse_url($url, PHP_URL_QUERY)) {
             $preparedUrl .= '?'.$query;
         }
 
-        if (! is_null($fragment = parse_url($url, PHP_URL_FRAGMENT))) {
+        if ($fragment = parse_url($url, PHP_URL_FRAGMENT)) {
             $preparedUrl .= '#'.$fragment;
         }
 
