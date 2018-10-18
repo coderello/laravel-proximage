@@ -3,7 +3,9 @@
 namespace Coderello\Proximage;
 
 use Closure;
+use Coderello\Proximage\Contracts\Template;
 use Coderello\Proximage\Enums\Parameter;
+use Coderello\Proximage\Exceptions\InvalidArgumentException;
 use Illuminate\Support\Collection;
 
 /**
@@ -99,6 +101,27 @@ class ImageProxy
             ->toArray();
 
         return 'https://' . self::DOMAIN . '?' . http_build_query($preparedParameters);
+    }
+
+    /**
+     * Apply template.
+     *
+     * @param Template|string $template
+     * @return ImageProxy
+     */
+    public function template($template): self
+    {
+        if (is_string($template) && class_exists($template)) {
+            $template = new $template;
+        }
+
+        if (! $template instanceof Template) {
+            throw new InvalidArgumentException;
+        }
+
+        $template->handle($this);
+
+        return $this;
     }
 
     /**
