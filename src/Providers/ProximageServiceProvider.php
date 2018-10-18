@@ -26,7 +26,15 @@ class ProximageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('proximage', ImageProxy::class);
+        $this->app->bind('proximage', function () {
+            $proximage = new ImageProxy;
+
+            foreach (config('proximage.defaults.templates', []) as $template) {
+                $proximage->template($template);
+            }
+
+            return $proximage;
+        });
 
         $this->mergeConfigFrom(
             __DIR__.'/../../config/proximage.php',
