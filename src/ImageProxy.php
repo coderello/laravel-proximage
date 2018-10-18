@@ -2,6 +2,7 @@
 
 namespace Coderello\Proximage;
 
+use BadMethodCallException;
 use Closure;
 use Coderello\Proximage\Enums\Parameter;
 use Illuminate\Support\Collection;
@@ -56,13 +57,12 @@ class ImageProxy
         $constantName = Parameter::class . '::' . strtoupper(snake_case($name));
 
         if (! defined($constantName)) {
-            trigger_error(
+            throw new BadMethodCallException(
                 sprintf(
                     'Call to undefined method %s::%s()',
                     get_class($this),
                     $name
-                ),
-                E_USER_ERROR
+                )
             );
         }
 
@@ -81,13 +81,13 @@ class ImageProxy
      */
     public function __toString()
     {
-        if (! is_null($this->shouldProxy) && ! ($this->shouldProxy)($this->url)) {
+        if ($this->shouldProxy && ! ($this->shouldProxy)($this->url)) {
             return $this->url;
         }
 
         $url = $this->prepareUrl($this->url);
 
-        if (is_null($url)) {
+        if (! $url) {
             return null;
         }
 
