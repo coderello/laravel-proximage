@@ -66,7 +66,7 @@ You can find all existing parameter names in `Parameter` enum situated in `Coder
 
 Sets callback which detects if given image should be proxied. Callback receives `$url` as the first argument and should return `true` or `false`.
 
-## template($template)
+### template($template)
 
 Applies template to the current `ImageProxy` instance.
 
