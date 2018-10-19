@@ -4,7 +4,7 @@ return [
 
     'defaults' => [
         /*
-         * Templates which would be applied to all proxied image.
+         * Templates which would be applied to all proxied images.
          *
          * Each template must implement \Coderello\Proximage\Contracts\Template
          */
