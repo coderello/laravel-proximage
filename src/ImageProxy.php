@@ -83,6 +83,16 @@ class ImageProxy
      */
     public function __toString()
     {
+        return (string) $this->get();
+    }
+
+    /**
+     * Get URL of proxied image.
+     *
+     * @return string
+     */
+    public function get(): ?string
+    {
         if ($this->shouldProxy && ! ($this->shouldProxy)($this->url)) {
             return $this->url;
         }

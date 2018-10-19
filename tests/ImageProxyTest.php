@@ -9,29 +9,45 @@ use Coderello\Proximage\Tests\Stubs\FooTemplate;
 
 class ImageProxyTest extends AbstractTestCase
 {
-    public function test___toString_method()
+    public function test_get_method()
     {
         $this->assertSame(
-            (new ImageProxy)->url('http://example.com:80/image.jpg?hello=world#laravel')->__toString(),
+            (new ImageProxy)->url('http://example.com:80/image.jpg?hello=world#laravel')->get(),
             'https://'.ImageProxy::DOMAIN.'?'.http_build_query([
                 'url' => 'example.com:80/image.jpg?hello=world#laravel'
             ])
         );
     }
 
-    public function test___toString_method_without_input_image_url()
+    public function test_get_method_without_input_image_url()
     {
         $this->assertSame(
-            (new ImageProxy)->__toString(),
+            (new ImageProxy)->get(),
             null
         );
     }
 
-    public function test___toString_method_with_invalid_input_image_url()
+    public function test_get_method_with_invalid_input_image_url()
     {
         $this->assertSame(
-            (new ImageProxy)->url('It is not a url')->__toString(),
+            (new ImageProxy)->url('It is not a url')->get(),
             null
+        );
+    }
+
+    public function test_casting_of_object_to_string()
+    {
+        $this->assertSame(
+            (string) (new ImageProxy)->url('http://example.com/image.jpg'),
+            (string) (new ImageProxy)->url('http://example.com/image.jpg')->get()
+        );
+    }
+
+    public function test_casting_of_object_to_string_without_input_image_url()
+    {
+        $this->assertSame(
+            (string) (new ImageProxy),
+            ''
         );
     }
 
