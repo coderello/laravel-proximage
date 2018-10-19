@@ -18,6 +18,25 @@ You can publish the config file with:
 php artisan vendor:publish --tag="proximage-config"
 ```
 
+This is the contents of the published config file:
+
+```php
+return [
+
+    'defaults' => [
+        /*
+         * Templates which would be applied to all proxied image.
+         *
+         * Each template must implement \Coderello\Proximage\Contracts\Template
+         */
+        'templates' => [
+            // \Coderello\Proximage\Templates\DisableProxyingForLocalEnvironmentTemplate::class,
+        ],
+    ],
+
+];
+```
+
 ## Some important notes
 
 - images are not processed on your server (package generates a link to your image processed by a third-party service);
