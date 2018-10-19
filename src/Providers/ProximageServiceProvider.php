@@ -8,11 +8,16 @@ use Illuminate\Support\ServiceProvider;
 class ProximageServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
+     * Bootstrap any application services.
      *
-     * @var bool
+     * @return void
      */
-    protected $defer = true;
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../../config/proximage.php' => config_path('proximage.php'),
+        ], 'proximage-config');
+    }
 
     /**
      * Register any application services.
@@ -21,16 +26,19 @@ class ProximageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('proximage', ImageProxy::class);
-    }
+        $this->app->bind('proximage', function () {
+            $proximage = new ImageProxy;
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['proximage'];
+            foreach (config('proximage.defaults.templates', []) as $template) {
+                $proximage->template($template);
+            }
+
+            return $proximage;
+        });
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/proximage.php',
+            'proximage'
+        );
     }
 }

@@ -3,7 +3,9 @@
 namespace Coderello\Proximage\Tests;
 
 use Coderello\Proximage\Enums\Parameter;
+use Coderello\Proximage\Exceptions\InvalidArgumentException;
 use Coderello\Proximage\ImageProxy;
+use Coderello\Proximage\Tests\Stubs\FooTemplate;
 
 class ImageProxyTest extends AbstractTestCase
 {
@@ -96,5 +98,36 @@ class ImageProxyTest extends AbstractTestCase
                     return ends_with($url, '.png');
                 })
         );
+    }
+
+    public function test_template_method_with_template_class_name_as_argument()
+    {
+        $this->assertSame(
+            (string) (new ImageProxy)->url('http://example.com/image.jpg')
+                ->parameter('foo', 'bar'),
+            (string) (new ImageProxy)
+                ->url('http://example.com/image.jpg')
+                ->template(FooTemplate::class)
+        );
+    }
+
+    public function test_template_method_with_template_instance_as_argument()
+    {
+        $this->assertSame(
+            (string) (new ImageProxy)->url('http://example.com/image.jpg')
+                ->parameter('foo', 'bar'),
+            (string) (new ImageProxy)
+                ->url('http://example.com/image.jpg')
+                ->template(new FooTemplate)
+        );
+    }
+
+    public function test_template_method_with_invalid_argument()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        (new ImageProxy)
+            ->url('http://example.com/image.jpg')
+            ->template('random string');
     }
 }

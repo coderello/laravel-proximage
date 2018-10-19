@@ -12,12 +12,36 @@ composer require coderello/laravel-proximage
 
 The package will automatically register itself.
 
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="proximage-config"
+```
+
+This is the contents of the published config file:
+
+```php
+return [
+
+    'defaults' => [
+        /*
+         * Templates which would be applied to all proxied images.
+         *
+         * Each template must implement \Coderello\Proximage\Contracts\Template
+         */
+        'templates' => [
+            // \Coderello\Proximage\Templates\DisableProxyingForLocalEnvironmentTemplate::class,
+        ],
+    ],
+
+];
+```
+
 ## Some important notes
 
 - images are not processed on your server (package generates a link to your image processed by a third-party service);
 - the only way to specify an input image is to pass its public link;
-- you can cast an object (obtained as a result of each example below) to string these ways: `(string) proximage($imageUrl)` or `proximage($imageUrl)->__toString()`.
-
+- you can cast an object (obtained as a result of each example below) to string that way: `(string) proximage($imageUrl)`.
 
 ## Examples of use
 
@@ -60,6 +84,22 @@ You can find all existing parameter names in `Parameter` enum situated in `Coder
 ### shouldProxy(Closure $shouldProxy)
 
 Sets callback which detects if given image should be proxied. Callback receives `$url` as the first argument and should return `true` or `false`.
+
+### template($template)
+
+Applies template to the current `ImageProxy` instance.
+
+**Accepts:**
+
+- `string` (template class name)
+- `object` (template instance)
+
+**Out-of-the-box templates (you can find them in `Coderello\Proximage\Templates\AvatarTemplate` namespace):**
+
+- `AvatarTemplate`
+- `DisableProxyingForLocalEnvironmentTemplate`
+
+> Of course, you are not limited to these ones. You can create your own templates. Each one must implement `Template` contract situated in the `Coderello\Proximage\Contracts` namespace.
 
 ## Methods for image manipulations 
 
