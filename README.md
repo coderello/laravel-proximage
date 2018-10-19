@@ -40,21 +40,22 @@ return [
 ## Some important notes
 
 - images are not processed on your server (package generates a link to your image processed by a third-party service);
-- the only way to specify an input image is to pass its public link;
-- you can cast an object (obtained as a result of each example below) to string that way: `(string) proximage($imageUrl)`.
+- the only way to specify an input image is to pass its public link.
 
 ## Examples of use
 
 Only caching:
 
 ```php
-proximage($imageUrl);
+proximage($imageUrl)
+  ->get();
 ```
 
 Caching and resizing:
 ```php
 proximage($imageUrl)
-  ->width(300);
+  ->width(300)
+  ->get();
 ```
 
 Caching and cropping:
@@ -64,7 +65,8 @@ use Coderello\Proximage\Enums\Parameter;
 ```php
 proximage($imageUrl)
   ->crop(Parameter\CropAlignment::CENTER)
-  ->transformation(Parameter\Transformation::SQUARE);
+  ->transformation(Parameter\Transformation::SQUARE)
+  ->get();
 ```
 
 ## Main methods
@@ -100,6 +102,10 @@ Applies template to the current `ImageProxy` instance.
 - `DisableProxyingForLocalEnvironmentTemplate`
 
 > Of course, you are not limited to these ones. You can create your own templates. Each one must implement `Template` contract situated in the `Coderello\Proximage\Contracts` namespace.
+
+### get()
+
+Returns URL of proxied image.
 
 ## Methods for image manipulations 
 
