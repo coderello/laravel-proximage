@@ -96,7 +96,7 @@ Applies template to the current `ImageProxy` instance.
 - `string` (template class name)
 - `object` (template instance)
 
-**Out-of-the-box templates (you can find them in `Coderello\Proximage\Templates\AvatarTemplate` namespace):**
+**Out-of-the-box templates (you can find them in `Coderello\Proximage\Templates` namespace):**
 
 - `AvatarTemplate`
 - `DisableProxyingForLocalEnvironmentTemplate`
