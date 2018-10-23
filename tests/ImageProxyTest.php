@@ -2,10 +2,10 @@
 
 namespace Coderello\Proximage\Tests;
 
-use Coderello\Proximage\Enums\Parameter;
-use Coderello\Proximage\Exceptions\InvalidArgumentException;
 use Coderello\Proximage\ImageProxy;
+use Coderello\Proximage\Enums\Parameter;
 use Coderello\Proximage\Tests\Stubs\FooTemplate;
+use Coderello\Proximage\Exceptions\InvalidArgumentException;
 
 class ImageProxyTest extends AbstractTestCase
 {
@@ -14,7 +14,7 @@ class ImageProxyTest extends AbstractTestCase
         $this->assertSame(
             (new ImageProxy)->url('http://example.com:80/image.jpg?hello=world#laravel')->get(),
             'https://'.ImageProxy::DOMAIN.'?'.http_build_query([
-                'url' => 'example.com:80/image.jpg?hello=world#laravel'
+                'url' => 'example.com:80/image.jpg?hello=world#laravel',
             ])
         );
     }
@@ -60,7 +60,7 @@ class ImageProxyTest extends AbstractTestCase
                 ->__toString(),
             'https://'.ImageProxy::DOMAIN.'?'.http_build_query([
                 Parameter::WIDTH => 100,
-                'url' => 'example.com/image.jpg'
+                'url' => 'example.com/image.jpg',
             ])
         );
     }

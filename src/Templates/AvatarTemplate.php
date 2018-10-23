@@ -2,11 +2,11 @@
 
 namespace Coderello\Proximage\Templates;
 
+use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Contracts\Template;
-use Coderello\Proximage\Enums\Parameter\CropAlignment;
 use Coderello\Proximage\Enums\Parameter\Mask;
 use Coderello\Proximage\Enums\Parameter\Output;
-use Coderello\Proximage\ImageProxy;
+use Coderello\Proximage\Enums\Parameter\CropAlignment;
 
 class AvatarTemplate implements Template
 {

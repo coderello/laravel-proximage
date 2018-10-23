@@ -2,12 +2,12 @@
 
 namespace Coderello\Proximage;
 
-use BadMethodCallException;
 use Closure;
-use Coderello\Proximage\Contracts\Template;
-use Coderello\Proximage\Enums\Parameter;
-use Coderello\Proximage\Exceptions\InvalidArgumentException;
+use BadMethodCallException;
 use Illuminate\Support\Collection;
+use Coderello\Proximage\Enums\Parameter;
+use Coderello\Proximage\Contracts\Template;
+use Coderello\Proximage\Exceptions\InvalidArgumentException;
 
 /**
  * @method self width($value)
@@ -56,7 +56,7 @@ class ImageProxy
      */
     public function __call($name, $arguments)
     {
-        $constantName = Parameter::class . '::' . strtoupper(snake_case($name));
+        $constantName = Parameter::class.'::'.strtoupper(snake_case($name));
 
         if (! defined($constantName)) {
             throw new BadMethodCallException(
@@ -110,7 +110,7 @@ class ImageProxy
             ->put('url', $url)
             ->toArray();
 
-        return 'https://' . self::DOMAIN . '?' . http_build_query($preparedParameters);
+        return 'https://'.self::DOMAIN.'?'.http_build_query($preparedParameters);
     }
 
     /**
