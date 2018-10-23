@@ -190,8 +190,8 @@ class ImageProxy
 
         $preparedUrl .= $host;
 
-        if ($scheme = parse_url($url, PHP_URL_SCHEME)) {
-            !($scheme == 'https') ?: $preparedUrl = 'ssl:'.$preparedUrl;
+        if (parse_url($url, PHP_URL_SCHEME) === 'https') {
+            $preparedUrl = 'ssl:'.$preparedUrl;
         }
 
         if ($port = parse_url($url, PHP_URL_PORT)) {
