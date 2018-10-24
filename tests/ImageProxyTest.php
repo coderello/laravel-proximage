@@ -19,6 +19,16 @@ class ImageProxyTest extends AbstractTestCase
         );
     }
 
+    public function test_get_method_with_input_image_url_with_https_protocol()
+    {
+        $this->assertSame(
+            (new ImageProxy)->url('https://example.com/image.png')->get(),
+            'https://'.ImageProxy::DOMAIN.'?'.http_build_query([
+                'url' => 'ssl:example.com/image.png',
+            ])
+        );
+    }
+
     public function test_get_method_without_input_image_url()
     {
         $this->assertSame(
