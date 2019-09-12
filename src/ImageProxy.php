@@ -4,6 +4,7 @@ namespace Coderello\Proximage;
 
 use Closure;
 use BadMethodCallException;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Coderello\Proximage\Enums\Parameter;
 use Coderello\Proximage\Contracts\Template;
@@ -56,7 +57,7 @@ class ImageProxy
      */
     public function __call($name, $arguments)
     {
-        $constantName = Parameter::class.'::'.strtoupper(snake_case($name));
+        $constantName = Parameter::class.'::'.strtoupper(Str::snake($name));
 
         if (! defined($constantName)) {
             throw new BadMethodCallException(
