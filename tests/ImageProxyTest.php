@@ -2,6 +2,7 @@
 
 namespace Coderello\Proximage\Tests;
 
+use Illuminate\Support\Str;
 use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Enums\Parameter;
 use Coderello\Proximage\Tests\Stubs\FooTemplate;
@@ -112,7 +113,7 @@ class ImageProxyTest extends AbstractTestCase
             (string) (new ImageProxy)
                 ->url('http://example.com/image.jpg')
                 ->shouldProxy(function ($url) {
-                    return ends_with($url, '.jpg');
+                    return Str::endsWith($url, '.jpg');
                 })
         );
 
@@ -121,7 +122,7 @@ class ImageProxyTest extends AbstractTestCase
             (string) (new ImageProxy)
                 ->url('http://example.com/image.jpg')
                 ->shouldProxy(function ($url) {
-                    return ends_with($url, '.png');
+                    return Str::endsWith($url, '.png');
                 })
         );
     }
