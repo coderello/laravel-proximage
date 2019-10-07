@@ -1,6 +1,0 @@
-site:
-  show: true
-  title: 'Laravel Proximage'
-  description: 'Laravel Proximage is a handy package for proxying images.'
-  package_repository: 'packagist'
-  package_name: 'coderello/laravel-proximage'
