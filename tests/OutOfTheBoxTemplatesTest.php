@@ -2,11 +2,11 @@
 
 namespace Coderello\Proximage\Tests;
 
-use Coderello\Proximage\ImageProxy;
+use Coderello\Proximage\Enums\Parameter\CropAlignment;
 use Coderello\Proximage\Enums\Parameter\Mask;
 use Coderello\Proximage\Enums\Parameter\Output;
+use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Templates\AvatarTemplate;
-use Coderello\Proximage\Enums\Parameter\CropAlignment;
 use Coderello\Proximage\Templates\DisableProxyingForLocalEnvironmentTemplate;
 
 class OutOfTheBoxTemplatesTest extends AbstractTestCase

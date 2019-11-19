@@ -2,8 +2,8 @@
 
 namespace Coderello\Proximage\Tests;
 
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Coderello\Proximage\Providers\ProximageServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class AbstractTestCase extends OrchestraTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Coderello\Proximage\Tests;
 
-use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Facades\Proximage;
+use Coderello\Proximage\ImageProxy;
 
 class ProximageFacadeTest extends AbstractTestCase
 {

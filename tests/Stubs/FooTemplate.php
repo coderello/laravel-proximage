@@ -2,8 +2,8 @@
 
 namespace Coderello\Proximage\Tests\Stubs;
 
-use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Contracts\Template;
+use Coderello\Proximage\ImageProxy;
 
 class FooTemplate implements Template
 {

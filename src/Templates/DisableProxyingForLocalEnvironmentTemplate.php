@@ -2,8 +2,8 @@
 
 namespace Coderello\Proximage\Templates;
 
-use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Contracts\Template;
+use Coderello\Proximage\ImageProxy;
 
 class DisableProxyingForLocalEnvironmentTemplate implements Template
 {

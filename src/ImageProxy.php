@@ -2,13 +2,13 @@
 
 namespace Coderello\Proximage;
 
-use Closure;
 use BadMethodCallException;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Coderello\Proximage\Enums\Parameter;
+use Closure;
 use Coderello\Proximage\Contracts\Template;
+use Coderello\Proximage\Enums\Parameter;
 use Coderello\Proximage\Exceptions\InvalidArgumentException;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * @method self width($value)

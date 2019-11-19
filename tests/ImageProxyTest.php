@@ -2,11 +2,11 @@
 
 namespace Coderello\Proximage\Tests;
 
-use Illuminate\Support\Str;
-use Coderello\Proximage\ImageProxy;
 use Coderello\Proximage\Enums\Parameter;
-use Coderello\Proximage\Tests\Stubs\FooTemplate;
 use Coderello\Proximage\Exceptions\InvalidArgumentException;
+use Coderello\Proximage\ImageProxy;
+use Coderello\Proximage\Tests\Stubs\FooTemplate;
+use Illuminate\Support\Str;
 
 class ImageProxyTest extends AbstractTestCase
 {
