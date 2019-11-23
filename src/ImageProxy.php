@@ -57,9 +57,9 @@ class ImageProxy
      */
     public function __call($name, $arguments)
     {
-        $constantName = Parameter::class.'::'.strtoupper(Str::snake($name));
+        $constantName = Parameter::class . '::' . strtoupper(Str::snake($name));
 
-        if (! defined($constantName)) {
+        if (!defined($constantName)) {
             throw new BadMethodCallException(
                 sprintf(
                     'Call to undefined method %s::%s()',
@@ -94,13 +94,13 @@ class ImageProxy
      */
     public function get(): ?string
     {
-        if ($this->shouldProxy && ! ($this->shouldProxy)($this->url)) {
+        if ($this->shouldProxy && !($this->shouldProxy)($this->url)) {
             return $this->url;
         }
 
         $url = $this->prepareUrl($this->url);
 
-        if (! $url) {
+        if (!$url) {
             return null;
         }
 
@@ -111,7 +111,9 @@ class ImageProxy
             ->put('url', $url)
             ->toArray();
 
-        return 'https://'.self::DOMAIN.'?'.http_build_query($preparedParameters);
+        $enc_type = config('proximage.defaults.http_build_query_enc_type') ? config('proximage.defaults.http_build_query_enc_type') : PHP_QUERY_RFC1738;
+
+        return 'https://' . self::DOMAIN . '?' . http_build_query($preparedParameters, null, null, $enc_type);
     }
 
     /**
@@ -126,7 +128,7 @@ class ImageProxy
             $template = new $template;
         }
 
-        if (! $template instanceof Template) {
+        if (!$template instanceof Template) {
             throw new InvalidArgumentException;
         }
 
@@ -185,18 +187,18 @@ class ImageProxy
     {
         $preparedUrl = '';
 
-        if (! $host = parse_url($url, PHP_URL_HOST)) {
+        if (!$host = parse_url($url, PHP_URL_HOST)) {
             return null;
         }
 
         $preparedUrl .= $host;
 
         if (parse_url($url, PHP_URL_SCHEME) === 'https') {
-            $preparedUrl = 'ssl:'.$preparedUrl;
+            $preparedUrl = 'ssl:' . $preparedUrl;
         }
 
         if ($port = parse_url($url, PHP_URL_PORT)) {
-            $preparedUrl .= ':'.$port;
+            $preparedUrl .= ':' . $port;
         }
 
         if ($path = parse_url($url, PHP_URL_PATH)) {
@@ -204,11 +206,11 @@ class ImageProxy
         }
 
         if ($query = parse_url($url, PHP_URL_QUERY)) {
-            $preparedUrl .= '?'.$query;
+            $preparedUrl .= '?' . $query;
         }
 
         if ($fragment = parse_url($url, PHP_URL_FRAGMENT)) {
-            $preparedUrl .= '#'.$fragment;
+            $preparedUrl .= '#' . $fragment;
         }
 
         return $preparedUrl;
