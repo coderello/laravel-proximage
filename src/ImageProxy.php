@@ -39,7 +39,7 @@ use Illuminate\Support\Str;
  */
 class ImageProxy
 {
-    const DOMAIN = 'images.weserv.nl';
+    const DOMAIN = 'wsrv.nl';
 
     /** @var string|null */
     protected $url;
